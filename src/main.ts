@@ -8,7 +8,7 @@ import {
   getSVGTag,
   getUint8ImageDataFromPath,
   pathToString,
-  Uint8ToChunk,
+  arrayToChunks,
 } from "./utils";
 
 const program = new Command();
@@ -33,7 +33,7 @@ program
     const uint8 = await getUint8ImageDataFromPath(path);
 
     const content = Array.from(uint8)
-      .reduce(Uint8ToChunk(4), [])
+      .reduce(arrayToChunks(4), [])
       .reduce(chunkToColor(width), [])
       .map(colorToPath)
       .map(pathToString)

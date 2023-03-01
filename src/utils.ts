@@ -7,11 +7,11 @@ export function getCSSColor(r: number, g: number, b: number, a: number) {
       .map((value) => value.toString(16).padStart(2, "0"))
       .join("")}`;
   }
-  return `rgba(${r},${g},${b},${a / 255})`;
+  return `rgba(${r},${g},${b},${(a / 255).toFixed(2)})`;
 }
 
-export function Uint8ToChunk(chunkSize: number) {
-  return (prev: any, current: any, index: number) => {
+export function arrayToChunks(chunkSize: number) {
+  return (prev: any[], current: any, index: number) => {
     const chunkIndex = Math.floor(index / chunkSize);
 
     if (!prev[chunkIndex]) {
